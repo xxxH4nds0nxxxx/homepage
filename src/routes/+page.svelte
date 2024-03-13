@@ -1,20 +1,16 @@
 <script>
-    import logo  from '../assets/logo.png'
-    import UI from '../assets/UI.png'
-    import IOS from '../assets/IOS.jpeg'
-    import Android from '../assets/Medien1.mp4'
+  //  import logo  from '../assets/logo.png'
+   // import UI from '../assets/UI.png'
+    //import IOS from '../assets/IOS.jpeg'
+    //import Android from '../assets/Medien1.mp4'
 </script>
+
+<svelte:head>
+    <title>HandsOn - Homepage</title>
+</svelte:head>
+
 <div>
 <div class="container">
-    <div class="nav">
-        <img src="{logo}" alt="logo" >
-        <div></div>
-        <a href="/login" class="nav-block">
-        
-            <p>Login</p>
-            
-        </a>
-    </div>
     <div class="sec1">
         <div class="text">
             <h1>What is HandsOn - AI?</h1>
@@ -40,8 +36,9 @@
             <h1>Userinterface</h1>
             <p> Designed with simplicity in mind, our platform ensures seamless communication for users of all ages and varying abilities. Whether you're navigating daily conversations or expressing intricate thoughts, HandsOn - AI offers a fluid and inclusive communication experience like never before.</p>
         </div>
+        <!--
             <img src="{UI}" alt="">
-        
+       -->
     </div>
 
     <div class="sec3 layer1 spacer">
@@ -60,7 +57,9 @@
         <div class="placeholder"></div>
         <div class="placeholder"></div>
         <div class="bottom-left-img">
+            <!--
             <img src="{IOS}" alt="IOS - App">
+            -->
         </div>
 
 
