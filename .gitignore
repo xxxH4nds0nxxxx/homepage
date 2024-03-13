@@ -130,5 +130,7 @@ dist
 .pnp.*
 
 #media
-src/assets/
+src/assets/*.png
+src/assets/*.jpeg
+src/assets/*.mp4
 
