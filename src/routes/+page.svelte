@@ -3,6 +3,46 @@
     import UI from '../assets/UI.png'
     import IOS from '../assets/IOS.jpeg'
     import Android from '../assets/Medien1.mp4'
+    import { initializeApp } from "firebase/app";
+    import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
+
+
+    const firebaseConfig = {
+
+        apiKey: "AIzaSyCqkWJ209qBx1ApNTDzbxYGLZoHqAt-1ls",
+        authDomain: "handson-ai.firebaseapp.com",
+        projectId: "handson-ai",
+        storageBucket: "handson-ai.appspot.com",
+        messagingSenderId: "583075617194",
+        appId: "1:583075617194:web:f1664df90a774cf12133d3",
+        measurementId: "G-CSTD6X1JPM"
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app)
+
+    let userData = {
+        fName: "",
+        lName: "",
+        mail: ""
+    }
+
+    onAuthStateChanged(auth, user => {
+        if(user != null) 
+        {
+            console.log('logged in!');
+            userData.mail = user.email || ""
+        } else
+        {
+            console.log('No user');
+        }
+    })
+
+    function logout()
+    {
+        signOut(auth)
+    }
 </script>
 <div>
 <div class="container">
@@ -14,10 +54,15 @@
             <p>Login</p>
             
         </a>
+            <input type="button" on:click={logout} value="Logout" class="nav-block">
     </div>
     <div class="sec1">
         <div class="text">
-            <h1>What is HandsOn - AI?</h1>
+            {#if userData.mail != ""}
+                <h1>Welcome {userData.mail}</h1>
+            {:else}
+                <h1>What is HandsOn - AI?</h1>
+            {/if}
             <p>Introducing HandsOn - AI, a groundbreaking tool developed by our company to empower individuals with deafness or speech impediments to communicate effortlessly. Harnessing cutting-edge artificial intelligence technology, HandsOn - AI revolutionizes communication by integrating the ASL alphabet into an intuitive interface.
             
                 <br><br>
@@ -40,7 +85,7 @@
             <h1>Userinterface</h1>
             <p> Designed with simplicity in mind, our platform ensures seamless communication for users of all ages and varying abilities. Whether you're navigating daily conversations or expressing intricate thoughts, HandsOn - AI offers a fluid and inclusive communication experience like never before.</p>
         </div>
-            <img src="{UI}" alt="">
+            <img src="{UI}" alt="User Interface - Website">
         
     </div>
 
@@ -62,8 +107,6 @@
         <div class="bottom-left-img">
             <img src="{IOS}" alt="IOS - App">
         </div>
-
-
     </div>
 
     <div class="sec4 layer2 spacer">
@@ -118,6 +161,26 @@
         display: grid;
         grid-template-areas: "a b c d e f g h i j k l m n o p q r s";
     }
+
+    input[type="button"]
+    {
+        border-radius: none;
+        border: none;
+        font-size: 2em;
+        font-family: inherit;
+        background-color: white;
+        align-self: right;
+        border-right: 1px solid black;
+        grid-area: r !important;
+    }
+
+
+    input[type="button"]:hover
+    {
+        background-color: white;
+    }
+
+
 
     .nav .nav-block
     {
