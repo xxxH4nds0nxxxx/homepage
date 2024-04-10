@@ -5,6 +5,12 @@
     import Android from '../assets/Medien1.mp4'
     import { initializeApp } from "firebase/app";
     import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
+    import * as camera from "$lib/scripts/Camera.js"
+    import {onMount} from "svelte";
+
+    onMount(() => {
+        camera.stopCamera()
+    })
 
 
     const firebaseConfig = {
@@ -46,6 +52,7 @@
 </script>
 <div>
 <div class="container">
+    <!--
     <div class="nav">
         <img src="{logo}" alt="logo" >
         <div></div>
@@ -56,6 +63,7 @@
         </a>
             <input type="button" on:click={logout} value="Logout" class="nav-block">
     </div>
+    -->
     <div class="sec1">
         <div class="text">
             {#if userData.mail != ""}

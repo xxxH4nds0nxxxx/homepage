@@ -1,5 +1,9 @@
 {
 	"/": [],
 	"/login": [],
-	"/register": []
+	"/register": [],
+	"/study-ASL": [
+		"src/routes/study-ASL/+page.server.ts"
+	],
+	"/translator": []
 }

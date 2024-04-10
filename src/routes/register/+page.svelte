@@ -3,6 +3,12 @@
     import { initializeApp } from "firebase/app";
     import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
     import { getFirestore } from 'firebase/firestore';
+    import * as camera from "$lib/scripts/Camera.js"
+    import {onMount} from "svelte";
+
+    onMount(() => {
+        camera.stopCamera()
+    })
 
 
     const firebaseConfig = {
