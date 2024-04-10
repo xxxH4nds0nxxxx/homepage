@@ -57,9 +57,9 @@
 
 </script>
 
-<div class="container">
-    <div class="left"></div>
-    <div class="right"></div>
+<div class="w-screen h-screen flex flex-row">
+    <div class="w-6/12 h-full bg-[#ECECEC]"></div>
+    <div class="w-6/12 h-full bg-[#DBDBDB]"></div>
     <div class="main">
         <div class="inputs">
             <div class="asdf">
@@ -188,11 +188,17 @@
     {
         background-color: #2D53A4;
         width: 100%;
-        height: 50vh;
+        height: 100%;
         display: grid;
         align-items: center;
         justify-content: center;
         border-left: 1px solid black;
         border-radius: 0px 20px 20px 0px;
+    }
+
+    .design img
+    {
+        width: calc(100% - 20px);
+        height: calc(100% - 20px);
     }
 </style>

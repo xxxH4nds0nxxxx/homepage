@@ -1,5 +1,5 @@
 <script>
-    import "../app.pcss";
+   
     import Nav from "$lib/component/Nav.svelte";
     import PopupASL from "$lib/component/PopupASL.svelte";
     import TextHistory from "$lib/component/TextHistory.svelte";
@@ -14,5 +14,7 @@
 <Notification/>
 <TextHistory/>
 <PopupASL/>
+
+
 
 <slot/>

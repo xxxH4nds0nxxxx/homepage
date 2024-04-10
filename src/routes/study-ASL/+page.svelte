@@ -4,6 +4,7 @@
     import * as camera from "$lib/scripts/Camera.js";
     import TextAreaQuiz from "$lib/component/TextAreaQuiz.svelte";
     import {onMount} from "svelte";
+    import "../app.pcss";
 
     onMount(() => {
         camera.stopCamera();

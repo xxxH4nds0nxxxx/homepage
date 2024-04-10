@@ -42,6 +42,7 @@
         } else
         {
             console.log('No user');
+            userData.mail = ""
         }
     })
 
@@ -51,7 +52,7 @@
     }
 </script>
 <div>
-<div class="container">
+<div class="container w-screen h-screen ">
     <!--
     <div class="nav">
         <img src="{logo}" alt="logo" >
@@ -64,7 +65,7 @@
             <input type="button" on:click={logout} value="Logout" class="nav-block">
     </div>
     -->
-    <div class="sec1">
+    <div class="sec1 w-screen h-screen">
         <div class="text">
             {#if userData.mail != ""}
                 <h1>Welcome {userData.mail}</h1>
@@ -88,7 +89,7 @@
         </div>
     </div>
 
-    <div class="sec2">
+    <div class="sec2 w-screen h-screen text-center">
         <div class="text">
             <h1>Userinterface</h1>
             <p> Designed with simplicity in mind, our platform ensures seamless communication for users of all ages and varying abilities. Whether you're navigating daily conversations or expressing intricate thoughts, HandsOn - AI offers a fluid and inclusive communication experience like never before.</p>
@@ -97,7 +98,7 @@
         
     </div>
 
-    <div class="sec3 layer1 spacer">
+    <div class="sec3 layer1 spacer w-screen h-screen">
 
         <div class="top-right-text">
             <h1>Availability - IOS</h1>
@@ -127,11 +128,11 @@
         </div>
         <div></div>
         <div class="video-container"> 
-            <!-- svelte-ignore a11y-media-has-caption
+            svelte-ignore a11y-media-has-caption
             <video controls>
             <source src="{Android}">
         
-            </video> -->
+            </video> 
         </div>
         
     
@@ -144,8 +145,6 @@
 <style>
     .container
     {
-        width: 100vw;
-        height: 100vh;
         font-family: 'Concert One', sans-serif;
     }
 
@@ -223,7 +222,6 @@
 
     .sec1
     {
-        width: 100vw;
         height: auto;
         background-color: #c98702;
         color: white;
@@ -237,13 +235,10 @@
 
     .sec1 .text
     {
-        width: 100%;
     }
 
     .text
     {
-        width: 50vw;
-        text-align: center;
     }
 
     .top-right-text
@@ -275,7 +270,6 @@
     .sec2
     {
         padding-top: 50px;
-        width: 100vw;
         height: 50vh;
         background-color: #001220;
         color: white;
@@ -300,8 +294,6 @@
 
     .sec3
     {
-        width: 100vw;
-        height: 100vh;
         background-color: #fca;
         color: white;
         overflow: hidden;
@@ -324,7 +316,6 @@
     .sec4
     {
         width: 100vw;
-        height: 75vh;
         display: grid;
         align-items: center;
         grid-template-columns: 1fr 1fr 1fr;
@@ -354,12 +345,10 @@
         justify-content: center;
 
         width: 800px;
-        height: 500px;
     }
 
     .spacer {
         aspect-ratio: 960/300;
-        width: 100%;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;

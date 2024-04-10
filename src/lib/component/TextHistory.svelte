@@ -16,7 +16,6 @@ The saved Texts will be shown here.
     import {InfoCircleSolid, ArrowRightOutline} from 'flowbite-svelte-icons';
     import {sineIn} from 'svelte/easing';
     import {hideHistory, textHistory} from "$lib/scripts/stores.js";
-
     let transitionParamsRight = {
         x: 320,
         duration: 200,
