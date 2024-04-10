@@ -1,9 +1,8 @@
 <script>
     import loginDesign from '../../assets/login_design.svg'
     import { initializeApp } from "firebase/app";
-    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth'
+    import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
     import { getFirestore } from 'firebase/firestore';
-    import { goto } from '$app/navigation'
 
 
     const firebaseConfig = {
@@ -20,26 +19,33 @@
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app)
+    const db = getFirestore(app)
 
     onAuthStateChanged(auth, user => {
         if(user != null) 
         {
             console.log('logged in!');
-            goto('/')
-
         } else
         {
             console.log('No user');
         }
     })
 
-    function login()
+    function register()
     {
-        signInWithEmailAndPassword(auth, userData.mail, userData.password)
+        createUserWithEmailAndPassword(auth, userData.mail, userData.password)
+            .then(userCredential => {
+                console.log("Signed up ", userCredential)
+            }).catch((e) => {
+                console.error(e)
+            })
     }
 
     let userData = {
+        fName: '',
+        lName: '',
         mail: '',
+        username: '',
         password: ''
     }
 
@@ -51,14 +57,20 @@
     <div class="main">
         <div class="inputs">
             <div class="asdf">
+                <p>First Name </p>
+                <input type="text" bind:value={userData.fName}>
+                <p>Last Name </p>
+                <input type="text" bind:value={userData.lName}>
+                <p>Username</p>
+                <input type="text" bind:value={userData.username}>
                 <p>E-Mail</p>
                 <input type="text" bind:value={userData.mail}>
                 <p>Password</p>
                 <input type="password" bind:value={userData.password}>
+
                 <div class="buttons">
-                    <input type="button" value="Login" class="active" on:click={login}>
-                    <a href="/register"><input type="button" value="Register" ></a>
-                    
+                    <a href="/login"> <input type="button" value="Login"></a>
+                    <input type="button" value="Register" class="active" on:click={register}>
                 </div>
             </div>
         </div>
@@ -154,8 +166,11 @@
         border-radius: 4px;
         height: 3vh;
         margin-top: 10%;
-        cursor: pointer;
+    }
 
+    input[type=button]:hover
+    {
+        cursor: pointer;
     }
 
     input:focus
@@ -173,11 +188,5 @@
         justify-content: center;
         border-left: 1px solid black;
         border-radius: 0px 20px 20px 0px;
-    }
-
-    .design img
-    {
-        width: calc(100% - 20px);
-        height: calc(50vh - 20px);
     }
 </style>

@@ -3,21 +3,68 @@
     import UI from '../assets/UI.png'
     import IOS from '../assets/IOS.jpeg'
     import Android from '../assets/Medien1.mp4'
+    import { initializeApp } from "firebase/app";
+    import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
+
+
+    const firebaseConfig = {
+
+        apiKey: "AIzaSyCqkWJ209qBx1ApNTDzbxYGLZoHqAt-1ls",
+        authDomain: "handson-ai.firebaseapp.com",
+        projectId: "handson-ai",
+        storageBucket: "handson-ai.appspot.com",
+        messagingSenderId: "583075617194",
+        appId: "1:583075617194:web:f1664df90a774cf12133d3",
+        measurementId: "G-CSTD6X1JPM"
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app)
+
+    let userData = {
+        fName: "",
+        lName: "",
+        mail: ""
+    }
+
+    onAuthStateChanged(auth, user => {
+        if(user != null) 
+        {
+            console.log('logged in!');
+            userData.mail = user.email || ""
+        } else
+        {
+            console.log('No user');
+        }
+    })
+
+    function logout()
+    {
+        signOut(auth)
+        userData.mail = ""
+    }
 </script>
 <div>
 <div class="container">
-    <div class="nav">
-        <img src="{logo}" alt="logo" >
-        <div></div>
-        <a href="/login" class="nav-block">
-        
-            <p>Login</p>
-            
-        </a>
-    </div>
+   
     <div class="sec1">
+        <div class="nav">
+            <img src="{logo}" alt="logo" >
+            <div></div>
+            <a href="/login" class="nav-block">
+            
+                <p>Login</p>
+                
+            </a>
+                <input type="button" on:click={logout} value="Logout" class="nav-block">
+        </div>
         <div class="text">
-            <h1>What is HandsOn - AI?</h1>
+            {#if userData.mail != ""}
+                <h1>Welcome {userData.mail}</h1>
+            {:else}
+                <h1>What is HandsOn - AI?</h1>
+            {/if}
             <p>Introducing HandsOn - AI, a groundbreaking tool developed by our company to empower individuals with deafness or speech impediments to communicate effortlessly. Harnessing cutting-edge artificial intelligence technology, HandsOn - AI revolutionizes communication by integrating the ASL alphabet into an intuitive interface.
             
                 <br><br>
@@ -40,30 +87,30 @@
             <h1>Userinterface</h1>
             <p> Designed with simplicity in mind, our platform ensures seamless communication for users of all ages and varying abilities. Whether you're navigating daily conversations or expressing intricate thoughts, HandsOn - AI offers a fluid and inclusive communication experience like never before.</p>
         </div>
-            <img src="{UI}" alt="">
-        
+        <img src="{UI}" alt="User Interface - Website">
     </div>
+    <div>
+        <div class="background-gif"></div>
+        <div class="sec3 layer1 spacer">
 
-    <div class="sec3 layer1 spacer">
+            <div class="top-right-text">
+                <h1>Availability - IOS</h1>
+                <p>
+                    
+                    Experience the freedom to express yourself fully, without limitations. From basic conversations to intricate expressions, the HandsOn - AI app supports you every step of the way.
+                    
+                    <br><br>
 
-        <div class="top-right-text">
-            <h1>Availability - IOS</h1>
-            <p>
-                
-                Experience the freedom to express yourself fully, without limitations. From basic conversations to intricate expressions, the HandsOn - AI app supports you every step of the way.
-                
-                <br><br>
+                    Download the HandsOn - AI app today and embark on a journey of limitless expression and connection.
+                </p>
+            </div>
+            <div class="placeholder"></div>
+            <div class="placeholder"></div>
+            <div class="bottom-left-img">
+                <img src="{IOS}" alt="IOS - App">
+            </div>
 
-                Download the HandsOn - AI app today and embark on a journey of limitless expression and connection.
-            </p>
         </div>
-        <div class="placeholder"></div>
-        <div class="placeholder"></div>
-        <div class="bottom-left-img">
-            <img src="{IOS}" alt="IOS - App">
-        </div>
-
-
     </div>
 
     <div class="sec4 layer2 spacer">
@@ -76,11 +123,11 @@
         </div>
         <div></div>
         <div class="video-container"> 
-            <!-- svelte-ignore a11y-media-has-caption
+            <!-- svelte-ignore a11y-media-has-caption -->
             <video controls>
             <source src="{Android}">
         
-            </video> -->
+            </video>
         </div>
         
     
@@ -113,17 +160,38 @@
     {
         width: 100vw;
         height: 150px;
-        background-color: #3f8a77;
+        background-color: transparent;
         color: white;
         display: grid;
         grid-template-areas: "a b c d e f g h i j k l m n o p q r s";
     }
 
+    input[type="button"]
+    {
+        border-radius: none;
+        border: none;
+        font-size: 2em;
+        font-family: inherit;
+        background-color: white;
+        align-self: right;
+        border-right: 1px solid black;
+        grid-area: r !important;
+    }
+
+
+    input[type="button"]:hover
+    {
+        cursor: pointer;
+    }
+
+/* TODO: remove */
+
     .nav .nav-block
     {
         text-decoration: none;
         color: black;
-        background-color: white;
+        background-color: transparent;
+        color: white;
         grid-area: s;
         display: grid;
         justify-content: center;
@@ -154,7 +222,8 @@
     {
         width: 100vw;
         height: auto;
-        background-color: #c98702;
+        background: rgb(147,16,161);
+        background: radial-gradient(circle, rgba(147,16,161,1) 26%, rgba(28,3,120,1) 79%, rgba(0,0,0,1) 100%);  
         color: white;
 
 
@@ -166,7 +235,7 @@
 
     .sec1 .text
     {
-        width: 100%;
+        width: 100vw !important;
     }
 
     .text
@@ -183,10 +252,6 @@
         margin: 50px;
         padding-left: 50px;
     }
-
-    /* .top-right-text h1
-    {
-    } */
 
     .bottom-left-img
     {
@@ -231,9 +296,9 @@
     {
         width: 100vw;
         height: 100vh;
-        background-color: #fca;
         color: white;
         overflow: hidden;
+        background-color: #001220;
 
         display: grid; 
         align-items: start;
@@ -247,7 +312,6 @@
         gap: 10px;
         grid-template-columns: repeat(10, 1fr);
         grid-auto-rows: 100px;
-        
     }
 
     .sec4
@@ -298,6 +362,15 @@
         background-image: url('../blobs.svg');
     }
 
+    .background-gif
+    {
+        position: absolute;
+        z-index: -1;
+        height: 100vh;
+        width: 100%;
+        background-size: cover;
+    }
+
     .layer2
     {
         background-image: url('../layers.svg')
@@ -325,14 +398,96 @@
         fill: #001220;
     }
 
-    @media (max-width: 1950px) {
-        .sec2
+    @media (max-width: 1920px) {
+        .sec3
         {
-            display: grid;
-            align-items: center; 
-            justify-content: left; 
+            background-image: none;
+            background-color: #7a01a7;
+            grid-template-columns: 1fr;
             grid-template-rows: 1fr 1fr;
+
+            height: fit-content;
         }
+
+        .sec3 .top-right-text
+        {
+            width: fit-content;
+            text-align: center;
+
+        }
+
+        .sec3 img
+        {
+            display: none;
+        }
+
+        video
+        {
+            display: none;
+        }
+    }
+
+    @media (max-width: 1849px) {
+        .sec1
+        {
+            font-size: 10px;
+        }
+
+        .sec2
+        { 
+            grid-template-rows: 1fr 1fr 1fr;
+            grid-template-columns: 1fr;
+            width: 100vw;
+            height: auto;
+            text-align: right;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sec2 .text
+        {
+            text-align: center;
+            height: 20vh;
+            width: 100vw;
+        }
+
+        .sec2 img
+        {
+            position: relative;
+            left: 50%;
+            top: 100%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: auto;
+        }
+
+        .sec3
+        {
+            background-image: none;
+            background-color: #7a01a7;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr;
+
+            height: fit-content;
+        }
+
+        .sec3 .top-right-text
+        {
+            width: fit-content;
+            text-align: center;
+
+        }
+
+        .sec3 img
+        {
+            display: none;
+        }
+
+        video
+        {
+            display: none;
+        }
+
     }
 
 </style>

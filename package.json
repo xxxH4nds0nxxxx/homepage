@@ -21,6 +21,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"firebase": "^10.8.1",
 		"kute.js": "^2.2.4"
 	}
 }

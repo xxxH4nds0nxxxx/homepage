@@ -129,8 +129,16 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+.svelte-kit/
+static/
+
 #media
 src/assets/*.png
 src/assets/*.jpeg
 src/assets/*.mp4
+
+.svelte-kit/output/client/_app/immutable/assets/*.mp4
+.svelte-kit/output/client/_app/immutable/assets/*.png
+.svelte-kit/output/client/_app/immutable/assets/*.jpeg
+.svelte-kit/output/client/_app/immutable/assets/Medien1.LCIX3pG_.mp4
 
